@@ -1,0 +1,2109 @@
+ENTERPRISE DATABASE AUDIT & QUERY VALIDATION REPORT
+Comprehensive Performance, Execution Analysis, and Data Output Verification
+Document Type
+Relational Database Engine Verification & Dataset Audit
+Target Object
+Employees Data Table (Schema: emp_id, emp_name, department, salary, city, experience)
+Role Context
+Principal Database Administrator (DBA) / System Data Architect
+Verification Date
+July 16, 2026
+
+
+1. DATABASE INITIALIZATION & BASELINE DATA SCHEMA
+The following Data Definition Language (DDL) and Data Manipulation Language (DML) scripts represent the structural blueprint and transactional baseline loaded into the relational cache engine. This baseline serves as the ground-truth context for all downstream operational queries.
+-- DDL Script: Table Architecture Creation
+CREATE TABLE Employees (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(50),
+    department VARCHAR(50),
+    salary INT,
+    city VARCHAR(50),
+    experience INT
+);
+
+-- DML Script: Baseline Enterprise Data Load
+INSERT INTO Employees VALUES
+(101, 'Rahul', 'IT', 75000, 'Hyderabad', 5),
+(102, 'Anjali', 'HR', 45000, 'Chennai', 3),
+(103, 'Kiran', 'IT', 82000, 'Bangalore', 6),
+(104, 'Sneha', 'Finance', 67000, 'Hyderabad', 4),
+(105, 'Aman', 'HR', 39000, 'Pune', 2),
+(106, 'Ravi', 'Finance', 91000, 'Mumbai', 8),
+(107, 'Divya', 'IT', 55000, 'Chennai', 3),
+(108, 'Meena', 'Sales', 48000, 'Bangalore', 2),
+(109, 'Arjun', 'Sales', 61000, 'Hyderabad', 5),
+(110, 'Pooja', 'IT', 73000, 'Mumbai', 4),
+(111, 'Vikas', 'HR', 52000, 'Pune', 3),
+(112, 'Nisha', 'Finance', 88000, 'Bangalore', 7),
+(113, 'Tarun', 'Sales', 46000, 'Chennai', 2),
+(114, 'Kavya', 'IT', 97000, 'Hyderabad', 9),
+(115, 'Manoj', 'Finance', 58000, 'Mumbai', 4);
+
+2. OPERATIONAL BLOCKS: SELECT OPERATOR
+This operational segment contains administrative queries executed to evaluate and audit records based on corporate select operator guidelines.
+Query 2.1: Display all employee details.
+SELECT * FROM Employees;
+DBA Technical Analysis: Performs a full table scan to retrieve all dimensions and attributes for every row record in the baseline table.
+emp_id
+emp_name
+department
+salary
+city
+experience
+101
+Rahul
+IT
+75,000
+Hyderabad
+5
+102
+Anjali
+HR
+45,000
+Chennai
+3
+103
+Kiran
+IT
+82,000
+Bangalore
+6
+104
+Sneha
+Finance
+67,000
+Hyderabad
+4
+105
+Aman
+HR
+39,000
+Pune
+2
+106
+Ravi
+Finance
+91,000
+Mumbai
+8
+107
+Divya
+IT
+55,000
+Chennai
+3
+108
+Meena
+Sales
+48,000
+Bangalore
+2
+109
+Arjun
+Sales
+61,000
+Hyderabad
+5
+110
+Pooja
+IT
+73,000
+Mumbai
+4
+111
+Vikas
+HR
+52,000
+Pune
+3
+112
+Nisha
+Finance
+88,000
+Bangalore
+7
+113
+Tarun
+Sales
+46,000
+Chennai
+2
+114
+Kavya
+IT
+97,000
+Hyderabad
+9
+115
+Manoj
+Finance
+58,000
+Mumbai
+4
+
+
+Query 2.2: Display only employee names and salaries.
+SELECT emp_name, salary FROM Employees;
+DBA Technical Analysis: Projects a vertical slice of the dataset, selecting only the identification name and base salary attributes.
+emp_name
+salary
+Rahul
+75,000
+Anjali
+45,000
+Kiran
+82,000
+Sneha
+67,000
+Aman
+39,000
+Ravi
+91,000
+Divya
+55,000
+Meena
+48,000
+Arjun
+61,000
+Pooja
+73,000
+Vikas
+52,000
+Nisha
+88,000
+Tarun
+46,000
+Kavya
+97,000
+Manoj
+58,000
+
+
+Query 2.3: Display employee names and departments.
+SELECT emp_name, department FROM Employees;
+DBA Technical Analysis: Filters out all other numerical statistics to present the resource names and their corporate department mapping.
+emp_name
+department
+Rahul
+IT
+Anjali
+HR
+Kiran
+IT
+Sneha
+Finance
+Aman
+HR
+Ravi
+Finance
+Divya
+IT
+Meena
+Sales
+Arjun
+Sales
+Pooja
+IT
+Vikas
+HR
+Nisha
+Finance
+Tarun
+Sales
+Kavya
+IT
+Manoj
+Finance
+
+
+Query 2.4: Display all employees from the IT department.
+SELECT * FROM Employees WHERE department = 'IT';
+DBA Technical Analysis: Applies a predicate filter to scan rows where the department attribute exactly matches the literal value 'IT'.
+emp_id
+emp_name
+department
+salary
+city
+experience
+101
+Rahul
+IT
+75,000
+Hyderabad
+5
+103
+Kiran
+IT
+82,000
+Bangalore
+6
+107
+Divya
+IT
+55,000
+Chennai
+3
+110
+Pooja
+IT
+73,000
+Mumbai
+4
+114
+Kavya
+IT
+97,000
+Hyderabad
+9
+
+
+Query 2.5: Display employee names and experience.
+SELECT emp_name, experience FROM Employees;
+DBA Technical Analysis: Extracts the subset of columns corresponding to individual worker names and their recorded tenure in years.
+emp_name
+experience
+Rahul
+5
+Anjali
+3
+Kiran
+6
+Sneha
+4
+Aman
+2
+Ravi
+8
+Divya
+3
+Meena
+2
+Arjun
+5
+Pooja
+4
+Vikas
+3
+Nisha
+7
+Tarun
+2
+Kavya
+9
+Manoj
+4
+
+
+
+3. OPERATIONAL BLOCKS: WHERE PREDICATE FILTERING
+This operational segment contains administrative queries executed to evaluate and audit records based on corporate where predicate filtering guidelines.
+Query 3.1: Find employees with salary greater than 70000.
+SELECT * FROM Employees WHERE salary > 70000;
+DBA Technical Analysis: Filters out any employee record whose base compensation does not exceed the threshold value of 70,000.
+emp_id
+emp_name
+department
+salary
+city
+experience
+101
+Rahul
+IT
+75,000
+Hyderabad
+5
+103
+Kiran
+IT
+82,000
+Bangalore
+6
+106
+Ravi
+Finance
+91,000
+Mumbai
+8
+110
+Pooja
+IT
+73,000
+Mumbai
+4
+112
+Nisha
+Finance
+88,000
+Bangalore
+7
+114
+Kavya
+IT
+97,000
+Hyderabad
+9
+
+
+Query 3.2: Find employees working in Hyderabad.
+SELECT * FROM Employees WHERE city = 'Hyderabad';
+DBA Technical Analysis: Restricts the result set to rows containing 'Hyderabad' in the location city column attribute.
+emp_id
+emp_name
+department
+salary
+city
+experience
+101
+Rahul
+IT
+75,000
+Hyderabad
+5
+104
+Sneha
+Finance
+67,000
+Hyderabad
+4
+109
+Arjun
+Sales
+61,000
+Hyderabad
+5
+114
+Kavya
+IT
+97,000
+Hyderabad
+9
+
+
+Query 3.3: Find employees with experience less than 4 years.
+SELECT * FROM Employees WHERE experience < 4;
+DBA Technical Analysis: Scans and displays junior resources with total industry experience strictly below the integer value 4.
+emp_id
+emp_name
+department
+salary
+city
+experience
+102
+Anjali
+HR
+45,000
+Chennai
+3
+105
+Aman
+HR
+39,000
+Pune
+2
+107
+Divya
+IT
+55,000
+Chennai
+3
+108
+Meena
+Sales
+48,000
+Bangalore
+2
+111
+Vikas
+HR
+52,000
+Pune
+3
+113
+Tarun
+Sales
+46,000
+Chennai
+2
+
+
+Query 3.4: Find employees from Finance department.
+SELECT * FROM Employees WHERE department = 'Finance';
+DBA Technical Analysis: Retrieves records exclusively matching the 'Finance' department organizational unit code.
+emp_id
+emp_name
+department
+salary
+city
+experience
+104
+Sneha
+Finance
+67,000
+Hyderabad
+4
+106
+Ravi
+Finance
+91,000
+Mumbai
+8
+112
+Nisha
+Finance
+88,000
+Bangalore
+7
+115
+Manoj
+Finance
+58,000
+Mumbai
+4
+
+
+Query 3.5: Find employees whose salary is equal to 52000.
+SELECT * FROM Employees WHERE salary = 52000;
+DBA Technical Analysis: Performs an exact point look-up query based on the salary attribute matching 52,000.
+emp_id
+emp_name
+department
+salary
+city
+experience
+111
+Vikas
+HR
+52,000
+Pune
+3
+
+
+
+4. OPERATIONAL BLOCKS: GROUP BY AGGREGATION
+This operational segment contains administrative queries executed to evaluate and audit records based on corporate group by aggregation guidelines.
+Query 4.1: Find total salary department-wise.
+SELECT department, SUM(salary) AS total_salary FROM Employees GROUP BY department;
+DBA Technical Analysis: Aggregates the total financial liability per departmental cost center using the SUM function.
+department
+total_salary
+Finance
+304,000
+HR
+136,000
+IT
+382,000
+Sales
+155,000
+
+
+Query 4.2: Find average salary in each department.
+SELECT department, AVG(salary) AS average_salary FROM Employees GROUP BY department;
+DBA Technical Analysis: Computes the mathematical mean of compensation figures within each organizational partition.
+department
+average_salary
+Finance
+76,000.0
+HR
+45,333.333333333336
+IT
+76,400.0
+Sales
+51,666.666666666664
+
+
+Query 4.3: Count employees in each city.
+SELECT city, COUNT(*) AS employee_count FROM Employees GROUP BY city;
+DBA Technical Analysis: Evaluates the structural distribution and count of the human resource footprint across different metropolises.
+city
+employee_count
+Bangalore
+3
+Chennai
+3
+Hyderabad
+4
+Mumbai
+3
+Pune
+2
+
+
+Query 4.4: Find maximum salary in each department.
+SELECT department, MAX(salary) AS max_salary FROM Employees GROUP BY department;
+DBA Technical Analysis: Identifies the highest compensation cap within each individual operational department.
+department
+max_salary
+Finance
+91,000
+HR
+52,000
+IT
+97,000
+Sales
+61,000
+
+
+Query 4.5: Find minimum experience department-wise.
+SELECT department, MIN(experience) AS min_experience FROM Employees GROUP BY department;
+DBA Technical Analysis: Determines the lowest experience metric per cost center to establish baseline team tenure.
+department
+min_experience
+Finance
+4
+HR
+2
+IT
+3
+Sales
+2
+
+
+
+5. OPERATIONAL BLOCKS: HAVING CLAUSE FILTERING
+This operational segment contains administrative queries executed to evaluate and audit records based on corporate having clause filtering guidelines.
+Query 5.1: Find departments having more than 3 employees.
+SELECT department, COUNT(*) AS employee_count FROM Employees GROUP BY department HAVING COUNT(*) > 3;
+DBA Technical Analysis: Filters the aggregated department groups to only return those containing an employee density greater than 3.
+department
+employee_count
+Finance
+4
+IT
+5
+
+
+Query 5.2: Find departments where average salary is greater than 60000.
+SELECT department, AVG(salary) AS average_salary FROM Employees GROUP BY department HAVING AVG(salary) > 60000;
+DBA Technical Analysis: Applies a post-aggregation filter to extract departments whose mean compensation exceeds 60,000.
+department
+average_salary
+Finance
+76,000.0
+IT
+76,400.0
+
+
+Query 5.3: Find cities having more than 2 employees.
+SELECT city, COUNT(*) AS employee_count FROM Employees GROUP BY city HAVING COUNT(*) > 2;
+DBA Technical Analysis: Isolates geographical hubs where regional headcount exceeds the specified threshold of 2 staff members.
+city
+employee_count
+Bangalore
+3
+Chennai
+3
+Hyderabad
+4
+Mumbai
+3
+
+
+Query 5.4: Find departments where total salary is greater than 200000.
+SELECT department, SUM(salary) AS total_salary FROM Employees GROUP BY department HAVING SUM(salary) > 200000;
+DBA Technical Analysis: Filters departmental buckets with a total payroll burn rate that exceeds 200,000 units.
+department
+total_salary
+Finance
+304,000
+IT
+382,000
+
+
+Query 5.5: Find departments where maximum salary is above 90000.
+SELECT department, MAX(salary) AS max_salary FROM Employees GROUP BY department HAVING MAX(salary) > 90000;
+DBA Technical Analysis: Screens for departments that possess high-earning top talent with compensation surpassing 90,000.
+department
+max_salary
+Finance
+91,000
+IT
+97,000
+
+
+
+6. OPERATIONAL BLOCKS: TOP / LIMIT CLAUSE
+This operational segment contains administrative queries executed to evaluate and audit records based on corporate top / limit clause guidelines.
+Query 6.1: Display top 5 highest paid employees.
+SELECT TOP 5 * FROM Employees ORDER BY salary DESC;
+DBA Technical Analysis: Sorts the whole dataset in a descending sequence based on salary and slices off the top 5 records (Uses TOP 5 syntax in T-SQL).
+emp_id
+emp_name
+department
+salary
+city
+experience
+114
+Kavya
+IT
+97,000
+Hyderabad
+9
+106
+Ravi
+Finance
+91,000
+Mumbai
+8
+112
+Nisha
+Finance
+88,000
+Bangalore
+7
+103
+Kiran
+IT
+82,000
+Bangalore
+6
+101
+Rahul
+IT
+75,000
+Hyderabad
+5
+
+
+Query 6.2: Display top 3 employees with highest experience.
+SELECT TOP 3 * FROM Employees ORDER BY experience DESC;
+DBA Technical Analysis: Orders records by tenure descendingly and restricts the output stream to the top 3 items.
+emp_id
+emp_name
+department
+salary
+city
+experience
+114
+Kavya
+IT
+97,000
+Hyderabad
+9
+106
+Ravi
+Finance
+91,000
+Mumbai
+8
+112
+Nisha
+Finance
+88,000
+Bangalore
+7
+
+
+Query 6.3: Display top 2 salaries from Finance department.
+SELECT TOP 2 salary FROM Employees WHERE department = 'Finance' ORDER BY salary DESC;
+DBA Technical Analysis: Filters the cost center by 'Finance', sorts by compensation, and returns the top 2 scalar salaries.
+salary
+91,000
+88,000
+
+
+Query 6.4: Display top 4 employees from Hyderabad.
+SELECT TOP 4 * FROM Employees WHERE city = 'Hyderabad' LIMIT 4;;
+DBA Technical Analysis: Extracts the first 4 employee records encountered matching the Hyderabad location constraint.
+emp_id
+emp_name
+department
+salary
+city
+experience
+101
+Rahul
+IT
+75,000
+Hyderabad
+5
+104
+Sneha
+Finance
+67,000
+Hyderabad
+4
+109
+Arjun
+Sales
+61,000
+Hyderabad
+5
+114
+Kavya
+IT
+97,000
+Hyderabad
+9
+
+
+Query 6.5: Display top 1 highest salary employee.
+SELECT TOP 1 * FROM Employees ORDER BY salary DESC;
+DBA Technical Analysis: Isolates the absolute global maximum earner from the entire organization layout.
+emp_id
+emp_name
+department
+salary
+city
+experience
+114
+Kavya
+IT
+97,000
+Hyderabad
+9
+
+
+
+7. OPERATIONAL BLOCKS: DISTINCT MODIFIER
+This operational segment contains administrative queries executed to evaluate and audit records based on corporate distinct modifier guidelines.
+Query 7.1: Display distinct department names.
+SELECT DISTINCT department FROM Employees;
+DBA Technical Analysis: Eliminates all duplicate values to provide a clean list of active operational divisions.
+department
+IT
+HR
+Finance
+Sales
+
+
+Query 7.2: Display distinct city names.
+SELECT DISTINCT city FROM Employees;
+DBA Technical Analysis: Sifts through the regional data to present unique geographical node listings.
+city
+Hyderabad
+Chennai
+Bangalore
+Pune
+Mumbai
+
+
+Query 7.3: Display distinct salary values.
+SELECT DISTINCT salary FROM Employees;
+DBA Technical Analysis: Extracts the list of unique financial compensation points established across the enterprise.
+salary
+75,000
+45,000
+82,000
+67,000
+39,000
+91,000
+55,000
+48,000
+61,000
+73,000
+52,000
+88,000
+46,000
+97,000
+58,000
+
+
+Query 7.4: Display distinct combinations of department and city.
+SELECT DISTINCT department, city FROM Employees;
+DBA Technical Analysis: Identifies all unique matrix combinations of organizational structures and their physical office locations.
+department
+city
+IT
+Hyderabad
+HR
+Chennai
+IT
+Bangalore
+Finance
+Hyderabad
+HR
+Pune
+Finance
+Mumbai
+IT
+Chennai
+Sales
+Bangalore
+Sales
+Hyderabad
+IT
+Mumbai
+Finance
+Bangalore
+Sales
+Chennai
+
+
+Query 7.5: Display distinct experience values.
+SELECT DISTINCT experience FROM Employees;
+DBA Technical Analysis: Lists out the individual unique experience levels present within the employee population.
+experience
+5
+3
+6
+4
+2
+8
+7
+9
+
+
+
+8. OPERATIONAL BLOCKS: COMPARISON OPERATORS
+This operational segment contains administrative queries executed to evaluate and audit records based on corporate comparison operators guidelines.
+Query 8.1: Find employees with salary >= 80000.
+SELECT * FROM Employees WHERE salary >= 80000;
+DBA Technical Analysis: Evaluates the greater-than-or-equal-to logical comparison condition against the salary column.
+emp_id
+emp_name
+department
+salary
+city
+experience
+103
+Kiran
+IT
+82,000
+Bangalore
+6
+106
+Ravi
+Finance
+91,000
+Mumbai
+8
+112
+Nisha
+Finance
+88,000
+Bangalore
+7
+114
+Kavya
+IT
+97,000
+Hyderabad
+9
+
+
+Query 8.2: Find employees with experience <= 3.
+SELECT * FROM Employees WHERE experience <= 3;
+DBA Technical Analysis: Filters out any employee whose tenure exceeds the maximum junior constraint of 3 years.
+emp_id
+emp_name
+department
+salary
+city
+experience
+102
+Anjali
+HR
+45,000
+Chennai
+3
+105
+Aman
+HR
+39,000
+Pune
+2
+107
+Divya
+IT
+55,000
+Chennai
+3
+108
+Meena
+Sales
+48,000
+Bangalore
+2
+111
+Vikas
+HR
+52,000
+Pune
+3
+113
+Tarun
+Sales
+46,000
+Chennai
+2
+
+
+Query 8.3: Find employees whose salary <> 45000.
+SELECT * FROM Employees WHERE salary <> 45000;
+DBA Technical Analysis: Excludes all records that match the specific point value of 45,000 using the inequality operator.
+emp_id
+emp_name
+department
+salary
+city
+experience
+101
+Rahul
+IT
+75,000
+Hyderabad
+5
+103
+Kiran
+IT
+82,000
+Bangalore
+6
+104
+Sneha
+Finance
+67,000
+Hyderabad
+4
+105
+Aman
+HR
+39,000
+Pune
+2
+106
+Ravi
+Finance
+91,000
+Mumbai
+8
+107
+Divya
+IT
+55,000
+Chennai
+3
+108
+Meena
+Sales
+48,000
+Bangalore
+2
+109
+Arjun
+Sales
+61,000
+Hyderabad
+5
+110
+Pooja
+IT
+73,000
+Mumbai
+4
+111
+Vikas
+HR
+52,000
+Pune
+3
+112
+Nisha
+Finance
+88,000
+Bangalore
+7
+113
+Tarun
+Sales
+46,000
+Chennai
+2
+114
+Kavya
+IT
+97,000
+Hyderabad
+9
+115
+Manoj
+Finance
+58,000
+Mumbai
+4
+
+
+Query 8.4: Find employees with salary < 50000.
+SELECT * FROM Employees WHERE salary < 50000;
+DBA Technical Analysis: Extracts low-range or entry-level salary brackets that fall strictly beneath 50,000.
+emp_id
+emp_name
+department
+salary
+city
+experience
+102
+Anjali
+HR
+45,000
+Chennai
+3
+105
+Aman
+HR
+39,000
+Pune
+2
+108
+Meena
+Sales
+48,000
+Bangalore
+2
+113
+Tarun
+Sales
+46,000
+Chennai
+2
+
+
+Query 8.5: Find employees with experience > 5.
+SELECT * FROM Employees WHERE experience > 5;
+DBA Technical Analysis: Retrieves high-seniority personnel whose industry tenure is strictly greater than 5 years.
+emp_id
+emp_name
+department
+salary
+city
+experience
+103
+Kiran
+IT
+82,000
+Bangalore
+6
+106
+Ravi
+Finance
+91,000
+Mumbai
+8
+112
+Nisha
+Finance
+88,000
+Bangalore
+7
+114
+Kavya
+IT
+97,000
+Hyderabad
+9
+
+
+
+9. OPERATIONAL BLOCKS: LOGICAL OPERATORS
+This operational segment contains administrative queries executed to evaluate and audit records based on corporate logical operators guidelines.
+Query 9.1: Find employees from IT department AND salary greater than 70000.
+SELECT * FROM Employees WHERE department = 'IT' AND salary > 70000;
+DBA Technical Analysis: Evaluates a conjunction condition requiring both specific division membership and high earnings.
+emp_id
+emp_name
+department
+salary
+city
+experience
+101
+Rahul
+IT
+75,000
+Hyderabad
+5
+103
+Kiran
+IT
+82,000
+Bangalore
+6
+110
+Pooja
+IT
+73,000
+Mumbai
+4
+114
+Kavya
+IT
+97,000
+Hyderabad
+9
+
+
+Query 9.2: Find employees from Hyderabad OR Bangalore.
+SELECT * FROM Employees WHERE city = 'Hyderabad' OR city = 'Bangalore';
+DBA Technical Analysis: Evaluates a disjunction condition matching records based in either of the specified major technology hubs.
+emp_id
+emp_name
+department
+salary
+city
+experience
+101
+Rahul
+IT
+75,000
+Hyderabad
+5
+103
+Kiran
+IT
+82,000
+Bangalore
+6
+104
+Sneha
+Finance
+67,000
+Hyderabad
+4
+108
+Meena
+Sales
+48,000
+Bangalore
+2
+109
+Arjun
+Sales
+61,000
+Hyderabad
+5
+112
+Nisha
+Finance
+88,000
+Bangalore
+7
+114
+Kavya
+IT
+97,000
+Hyderabad
+9
+
+
+Query 9.3: Find employees from HR department AND experience less than 3.
+SELECT * FROM Employees WHERE department = 'HR' AND experience < 3;
+DBA Technical Analysis: Combines divisional criteria with a lower bound threshold filter on tenure via a boolean AND operator.
+emp_id
+emp_name
+department
+salary
+city
+experience
+105
+Aman
+HR
+39,000
+Pune
+2
+
+
+Query 9.4: Find employees with salary greater than 60000 OR experience greater than 6.
+SELECT * FROM Employees WHERE salary > 60000 OR experience > 6;
+DBA Technical Analysis: Matches individuals who satisfy either the premium salary benchmark or the senior tenure benchmark.
+emp_id
+emp_name
+department
+salary
+city
+experience
+101
+Rahul
+IT
+75,000
+Hyderabad
+5
+103
+Kiran
+IT
+82,000
+Bangalore
+6
+104
+Sneha
+Finance
+67,000
+Hyderabad
+4
+106
+Ravi
+Finance
+91,000
+Mumbai
+8
+109
+Arjun
+Sales
+61,000
+Hyderabad
+5
+110
+Pooja
+IT
+73,000
+Mumbai
+4
+112
+Nisha
+Finance
+88,000
+Bangalore
+7
+114
+Kavya
+IT
+97,000
+Hyderabad
+9
+
+
+Query 9.5: Find employees NOT from Sales department.
+SELECT * FROM Employees WHERE department <> 'Sales';
+DBA Technical Analysis: Applies a logical negation rule to retrieve resources deployed outside the Sales vertical.
+emp_id
+emp_name
+department
+salary
+city
+experience
+101
+Rahul
+IT
+75,000
+Hyderabad
+5
+102
+Anjali
+HR
+45,000
+Chennai
+3
+103
+Kiran
+IT
+82,000
+Bangalore
+6
+104
+Sneha
+Finance
+67,000
+Hyderabad
+4
+105
+Aman
+HR
+39,000
+Pune
+2
+106
+Ravi
+Finance
+91,000
+Mumbai
+8
+107
+Divya
+IT
+55,000
+Chennai
+3
+110
+Pooja
+IT
+73,000
+Mumbai
+4
+111
+Vikas
+HR
+52,000
+Pune
+3
+112
+Nisha
+Finance
+88,000
+Bangalore
+7
+114
+Kavya
+IT
+97,000
+Hyderabad
+9
+115
+Manoj
+Finance
+58,000
+Mumbai
+4
+
+
+
+10. OPERATIONAL BLOCKS: IN AND NOT IN SET MEMBERSHIP
+This operational segment contains administrative queries executed to evaluate and audit records based on corporate in and not in set membership guidelines.
+Query 10.1: Find employees working in ('Hyderabad', 'Mumbai').
+SELECT * FROM Employees WHERE city IN ('Hyderabad', 'Mumbai');
+DBA Technical Analysis: Performs set-membership verification against an explicit array of strategic metropolises.
+emp_id
+emp_name
+department
+salary
+city
+experience
+101
+Rahul
+IT
+75,000
+Hyderabad
+5
+104
+Sneha
+Finance
+67,000
+Hyderabad
+4
+106
+Ravi
+Finance
+91,000
+Mumbai
+8
+109
+Arjun
+Sales
+61,000
+Hyderabad
+5
+110
+Pooja
+IT
+73,000
+Mumbai
+4
+114
+Kavya
+IT
+97,000
+Hyderabad
+9
+115
+Manoj
+Finance
+58,000
+Mumbai
+4
+
+
+Query 10.2: Find employees whose department IN ('IT', 'Finance').
+SELECT * FROM Employees WHERE department IN ('IT', 'Finance');
+DBA Technical Analysis: Filters rows based on structural matching inside the specified sector tuple collection.
+emp_id
+emp_name
+department
+salary
+city
+experience
+101
+Rahul
+IT
+75,000
+Hyderabad
+5
+103
+Kiran
+IT
+82,000
+Bangalore
+6
+104
+Sneha
+Finance
+67,000
+Hyderabad
+4
+106
+Ravi
+Finance
+91,000
+Mumbai
+8
+107
+Divya
+IT
+55,000
+Chennai
+3
+110
+Pooja
+IT
+73,000
+Mumbai
+4
+112
+Nisha
+Finance
+88,000
+Bangalore
+7
+114
+Kavya
+IT
+97,000
+Hyderabad
+9
+115
+Manoj
+Finance
+58,000
+Mumbai
+4
+
+
+Query 10.3: Find employees whose city NOT IN ('Chennai', 'Pune').
+SELECT * FROM Employees WHERE city NOT IN ('Chennai', 'Pune');
+DBA Technical Analysis: Excludes all records associated with the specified blacklisted geographic nodes.
+emp_id
+emp_name
+department
+salary
+city
+experience
+101
+Rahul
+IT
+75,000
+Hyderabad
+5
+103
+Kiran
+IT
+82,000
+Bangalore
+6
+104
+Sneha
+Finance
+67,000
+Hyderabad
+4
+106
+Ravi
+Finance
+91,000
+Mumbai
+8
+108
+Meena
+Sales
+48,000
+Bangalore
+2
+109
+Arjun
+Sales
+61,000
+Hyderabad
+5
+110
+Pooja
+IT
+73,000
+Mumbai
+4
+112
+Nisha
+Finance
+88,000
+Bangalore
+7
+114
+Kavya
+IT
+97,000
+Hyderabad
+9
+115
+Manoj
+Finance
+58,000
+Mumbai
+4
+
+
+Query 10.4: Find employees whose salary IN (45000, 75000, 91000).
+SELECT * FROM Employees WHERE salary IN (45000, 75000, 91000);
+DBA Technical Analysis: Matches records precisely aligning with fixed predefined corporate payroll scales.
+emp_id
+emp_name
+department
+salary
+city
+experience
+101
+Rahul
+IT
+75,000
+Hyderabad
+5
+102
+Anjali
+HR
+45,000
+Chennai
+3
+106
+Ravi
+Finance
+91,000
+Mumbai
+8
+
+
+Query 10.5: Find employees whose department NOT IN ('HR', 'Sales').
+SELECT * FROM Employees WHERE department NOT IN ('HR', 'Sales');
+DBA Technical Analysis: Excludes both support and customer acquisition functions to focus on backend core operations.
+emp_id
+emp_name
+department
+salary
+city
+experience
+101
+Rahul
+IT
+75,000
+Hyderabad
+5
+103
+Kiran
+IT
+82,000
+Bangalore
+6
+104
+Sneha
+Finance
+67,000
+Hyderabad
+4
+106
+Ravi
+Finance
+91,000
+Mumbai
+8
+107
+Divya
+IT
+55,000
+Chennai
+3
+110
+Pooja
+IT
+73,000
+Mumbai
+4
+112
+Nisha
+Finance
+88,000
+Bangalore
+7
+114
+Kavya
+IT
+97,000
+Hyderabad
+9
+115
+Manoj
+Finance
+58,000
+Mumbai
+4
+
+
+
+11. OPERATIONAL BLOCKS: BETWEEN RANGE EVALUATION
+This operational segment contains administrative queries executed to evaluate and audit records based on corporate between range evaluation guidelines.
+Query 11.1: Find employees with salary BETWEEN 50000 AND 80000.
+SELECT * FROM Employees WHERE salary BETWEEN 50000 AND 80000;
+DBA Technical Analysis: Validates an inclusive linear range mapping for employee financial compensation records.
+emp_id
+emp_name
+department
+salary
+city
+experience
+101
+Rahul
+IT
+75,000
+Hyderabad
+5
+104
+Sneha
+Finance
+67,000
+Hyderabad
+4
+107
+Divya
+IT
+55,000
+Chennai
+3
+109
+Arjun
+Sales
+61,000
+Hyderabad
+5
+110
+Pooja
+IT
+73,000
+Mumbai
+4
+111
+Vikas
+HR
+52,000
+Pune
+3
+115
+Manoj
+Finance
+58,000
+Mumbai
+4
+
+
+Query 11.2: Find employees with experience BETWEEN 3 AND 6.
+SELECT * FROM Employees WHERE experience BETWEEN 3 AND 6;
+DBA Technical Analysis: Captures resources falling square within the mid-level experience spectrum (3 to 6 years inclusive).
+emp_id
+emp_name
+department
+salary
+city
+experience
+101
+Rahul
+IT
+75,000
+Hyderabad
+5
+102
+Anjali
+HR
+45,000
+Chennai
+3
+103
+Kiran
+IT
+82,000
+Bangalore
+6
+104
+Sneha
+Finance
+67,000
+Hyderabad
+4
+107
+Divya
+IT
+55,000
+Chennai
+3
+109
+Arjun
+Sales
+61,000
+Hyderabad
+5
+110
+Pooja
+IT
+73,000
+Mumbai
+4
+111
+Vikas
+HR
+52,000
+Pune
+3
+115
+Manoj
+Finance
+58,000
+Mumbai
+4
+
+
+Query 11.3: Find employees whose emp_id BETWEEN 105 AND 112.
+SELECT * FROM Employees WHERE emp_id BETWEEN 105 AND 112;
+DBA Technical Analysis: Filters standard administrative rows based on an inclusive numerical primary key identifier sequence.
+emp_id
+emp_name
+department
+salary
+city
+experience
+105
+Aman
+HR
+39,000
+Pune
+2
+106
+Ravi
+Finance
+91,000
+Mumbai
+8
+107
+Divya
+IT
+55,000
+Chennai
+3
+108
+Meena
+Sales
+48,000
+Bangalore
+2
+109
+Arjun
+Sales
+61,000
+Hyderabad
+5
+110
+Pooja
+IT
+73,000
+Mumbai
+4
+111
+Vikas
+HR
+52,000
+Pune
+3
+112
+Nisha
+Finance
+88,000
+Bangalore
+7
+
+
+Query 11.4: Find employees with salary NOT BETWEEN 40000 AND 60000.
+SELECT * FROM Employees WHERE salary NOT BETWEEN 40000 AND 60000;
+DBA Technical Analysis: Isolates compensation structures that deviate outside the middle corporate baseline window.
+emp_id
+emp_name
+department
+salary
+city
+experience
+101
+Rahul
+IT
+75,000
+Hyderabad
+5
+103
+Kiran
+IT
+82,000
+Bangalore
+6
+104
+Sneha
+Finance
+67,000
+Hyderabad
+4
+105
+Aman
+HR
+39,000
+Pune
+2
+106
+Ravi
+Finance
+91,000
+Mumbai
+8
+109
+Arjun
+Sales
+61,000
+Hyderabad
+5
+110
+Pooja
+IT
+73,000
+Mumbai
+4
+112
+Nisha
+Finance
+88,000
+Bangalore
+7
+114
+Kavya
+IT
+97,000
+Hyderabad
+9
+
+
+Query 11.5: Find employees with experience BETWEEN 2 AND 4.
+SELECT * FROM Employees WHERE experience BETWEEN 2 AND 4;
+DBA Technical Analysis: Targets early-career resources transitioning from junior to intermediate status parameters.
+emp_id
+emp_name
+department
+salary
+city
+experience
+102
+Anjali
+HR
+45,000
+Chennai
+3
+104
+Sneha
+Finance
+67,000
+Hyderabad
+4
+105
+Aman
+HR
+39,000
+Pune
+2
+107
+Divya
+IT
+55,000
+Chennai
+3
+108
+Meena
+Sales
+48,000
+Bangalore
+2
+110
+Pooja
+IT
+73,000
+Mumbai
+4
+111
+Vikas
+HR
+52,000
+Pune
+3
+113
+Tarun
+Sales
+46,000
+Chennai
+2
+115
+Manoj
+Finance
+58,000
+Mumbai
+4
+
+
+
+12. OPERATIONAL BLOCKS: LIKE STRING PATTERN MATCHING
+This operational segment contains administrative queries executed to evaluate and audit records based on corporate like string pattern matching guidelines.
+Query 12.1: Find employees whose names start with 'R'.
+SELECT * FROM Employees WHERE emp_name LIKE 'R%';
+DBA Technical Analysis: Executes an alphabetical prefix pattern search matching names starting with the capital character 'R'.
+emp_id
+emp_name
+department
+salary
+city
+experience
+101
+Rahul
+IT
+75,000
+Hyderabad
+5
+106
+Ravi
+Finance
+91,000
+Mumbai
+8
+
+
+Query 12.2: Find employees whose names end with 'a'.
+SELECT * FROM Employees WHERE emp_name LIKE '%a';
+DBA Technical Analysis: Scans text data fields using a wildcard suffix to identify names terminating in the vowel 'a'.
+emp_id
+emp_name
+department
+salary
+city
+experience
+104
+Sneha
+Finance
+67,000
+Hyderabad
+4
+107
+Divya
+IT
+55,000
+Chennai
+3
+108
+Meena
+Sales
+48,000
+Bangalore
+2
+110
+Pooja
+IT
+73,000
+Mumbai
+4
+112
+Nisha
+Finance
+88,000
+Bangalore
+7
+114
+Kavya
+IT
+97,000
+Hyderabad
+9
+
+
+Query 12.3: Find employees whose names contain 'v'.
+SELECT * FROM Employees WHERE emp_name LIKE '%v%';
+DBA Technical Analysis: Performs a full substring scan to extract entries containing the specific internal letter component 'v'.
+emp_id
+emp_name
+department
+salary
+city
+experience
+106
+Ravi
+Finance
+91,000
+Mumbai
+8
+107
+Divya
+IT
+55,000
+Chennai
+3
+111
+Vikas
+HR
+52,000
+Pune
+3
+114
+Kavya
+IT
+97,000
+Hyderabad
+9
+
+
+Query 12.4: Find employees whose city starts with 'B'.
+SELECT * FROM Employees WHERE city LIKE 'B%';
+DBA Technical Analysis: Matches geographical region entities whose label strings begin with the letter 'B' (e.g., Bangalore).
+emp_id
+emp_name
+department
+salary
+city
+experience
+103
+Kiran
+IT
+82,000
+Bangalore
+6
+108
+Meena
+Sales
+48,000
+Bangalore
+2
+112
+Nisha
+Finance
+88,000
+Bangalore
+7
+
+
+Query 12.5: Find employees whose department ends with 's'.
+SELECT * FROM Employees WHERE department LIKE '%s';
+DBA Technical Analysis: Filters organizational sectors whose formal labels terminate with the pluralizing character 's' (e.g., Sales).
+emp_id
+emp_name
+department
+salary
+city
+experience
+108
+Meena
+Sales
+48,000
+Bangalore
+2
+109
+Arjun
+Sales
+61,000
+Hyderabad
+5
+113
+Tarun
+Sales
+46,000
+Chennai
+2
+
+
+
